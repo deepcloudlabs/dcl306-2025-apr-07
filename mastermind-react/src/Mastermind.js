@@ -1,7 +1,7 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Container from "./components/common/container";
 import Card from "./components/common/card";
-
+// Deadline -> 14:20
 function Mastermind() {
     //region define states
     const [secret, setSecret] = useState(549);
@@ -15,13 +15,13 @@ function Mastermind() {
     const [moves, setMoves] = useState([]);
     // endregion
 
-    let timerId = null;
+    const timerId = useRef(null);
     useEffect(()=>{
-      timerId = setInterval(()=>{
+      timerId.current = setInterval(()=>{
           setCounter(counter - 1);
       })
       return() => {
-          if (timerId) clearInterval(timerId);
+          if (timerId) clearInterval(timerId.current);
       }
     });
 
