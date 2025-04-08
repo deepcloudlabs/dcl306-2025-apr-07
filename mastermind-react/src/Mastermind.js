@@ -23,7 +23,7 @@ function Mastermind() {
       return() => {
           if (timerId) clearInterval(timerId.current);
       }
-    });
+    }, []);
 
     //return View
     return (
