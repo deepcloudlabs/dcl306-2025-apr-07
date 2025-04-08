@@ -1,7 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
 import React from "react";
-import button from "bootstrap/js/src/button";
+import Card from "./components/common/card";
+import Select from "./components/common/select";
+import Button from "./components/common/button";
+import Badge from "./components/common/badge";
 // View (Html + CSS) -> js -> functional programming -> reactive programming
 // View: index.html -> <div id="root"> ** View ** </div>
 // Html -> Tag + Composite Pattern
@@ -77,29 +78,22 @@ class App extends React.PureComponent {
     }
 
     render() {
-        return (
-            <div className={"card"}>
-                <div className="card-header">
-                    <h3 className="card-title font-weight-light">Market</h3>
-                </div>
-                <div className="card-body">
-                    <label htmlFor={"symbols"} className={"form-label"}>Symbols:</label>
-                    <select id="symbols"
-                            value={this.state.symbol}
-                            onChange={this.handleSymbolChange}
-                            className={"form-select"}>
-                        {
-                            this.state.symbols.map(symbol => (
-                                <option key={symbol} value={symbol}>{symbol}</option>
-                            ))
-                        }
-                    </select>
-                    <button className={"btn btn-success"}
-                            onClick={this.getMarketPrice}>Get price
-                    </button>
-                    {Number.isFinite(this.state.price) && (<h3 className={"card-title"}>{this.state.price}</h3>)}
-                </div>
-            </div>
+        return ( // View
+            <Card title={"Market"}>
+                <Select handleChange={this.handleSymbolChange}
+                        id={"symbol"}
+                        label={"Symbol"}
+                        value={this.state.symbol}
+                        optionValues={this.state.symbols}
+                />
+                <Button click={this.getMarketPrice}
+                        color={"btn-warning"}
+                        label={"Get Market Price"}/>
+                <Badge isVisible={Number.isFinite(this.state.price)}
+                       value={this.state.price}
+                       color={"bg-primary"}
+                       label={"Price"}/>
+            </Card>
         );
     }
 }// Component
