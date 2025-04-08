@@ -66,7 +66,7 @@ class App extends React.PureComponent {
         }) // asynchronous
     }
 
-    getMarketPrice = async event => {
+    getMarketPrice = async () => {
         fetch(`https://api.binance.com/api/v3/ticker?symbol=${this.state.symbol}`, {
             method: "GET",
             headers: {
