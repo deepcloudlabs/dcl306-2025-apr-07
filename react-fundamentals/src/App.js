@@ -16,6 +16,9 @@ import Badge from "./components/common/badge";
 //        reactive <-- UI
 //  One-way/Two-way Binding
 //  React -> programmatic
+//           { js } -> UI
+//           setState / setXYZ: Model -> UI
+//           UI -> onClick/onChange/ -> js -> update model
 
 //  I. Stateful Component
 //      i. class -> ii. function + hooks (useState())
