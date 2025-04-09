@@ -11,6 +11,7 @@ export default function Photo({id, label, value, handleChange}){
         <div className={"form-group"}>
             <label htmlFor={id} className={"form-label"}>{label}:</label>
             <img src={value}
+                 style={{width: "64px"}}
                  alt={"Photo"}/>
             <label>
                 <input type={"file"}

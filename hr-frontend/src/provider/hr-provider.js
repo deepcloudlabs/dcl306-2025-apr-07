@@ -33,6 +33,11 @@ export function useEmployee(){
     return hr.employee;
 }
 
+export function useEmployees(){
+    const {hr} = useContext(HrContext);
+    return hr.employees;
+}
+
 export function useDepartments(){
     const {hr} = useContext(HrContext);
     hr.departments.sort();

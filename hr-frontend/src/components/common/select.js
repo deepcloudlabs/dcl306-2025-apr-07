@@ -6,6 +6,7 @@ export default function SelectBox({id, label, value, handleChange, optionValues}
             <label htmlFor={id} className={"form-label"}>{label}:</label>
             <select id={id}
                     value={value}
+                    name={id}
                     onChange={handleChange}
                     className={"form-select"}>
                 {

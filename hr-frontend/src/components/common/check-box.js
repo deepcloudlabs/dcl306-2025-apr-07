@@ -7,7 +7,7 @@ export default function CheckBox({id, label, value, handleChange}) {
                 <input type={"checkbox"}
                        id={id}
                        name={id}
-                       value={value}
+                       checked={value}
                        onChange={handleChange}
                        className={"form-check-input"}
                 ></input>
