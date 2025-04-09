@@ -68,7 +68,6 @@ function AlgoTrader() {
     const [volume, setVolume] = useState(0);
     const [totalVolume, setTotalVolume] = useState(0);
     const [windowSize, setWindowSize] = useState(50);
-    const [trades, setTrades] = useState([]);
     const [connected, setConnected] = useState(false);
     const [chartData, setChartData] = useState(initialChartData);
 
@@ -101,7 +100,6 @@ function AlgoTrader() {
 
         const handleTrade = (trade) => {
             setVolume(trade.volume);
-            setTrades(prev => [...prev, trade]);
 
             setChartData(prev => {
                 const newLabels = [...prev.labels, trade.timestamp].slice(-windowSize);
