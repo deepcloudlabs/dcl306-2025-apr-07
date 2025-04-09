@@ -25,14 +25,16 @@ export default function GameReducer(gameState, action) {
             if (newGameState.secret === newGameState.guess) {
                 newGameState.level++;
                 if (newGameState.level === 10) {
-                    // TODO: player wins
+                    newGameState.status = "WINS";
+                    return newGameState;
                 }
                 moveToNextLevel(newGameState);
             } else {
                 if (newGameState.numberOfMoves >= newGameState.maxNumberOfMoves) {
                     newGameState.lives--;
                     if (newGameState.lives === 0) {
-                        // TODO: player loses
+                        newGameState.status = "LOSES";
+                        return newGameState;
                     }
                     replayLevel(newGameState);
                 } else {
@@ -40,6 +42,17 @@ export default function GameReducer(gameState, action) {
                 }
             }
             break;
+            case "TIMER_TICK":
+                newGameState.counter--;
+                if (newGameState.counter <= 0) {
+                    newGameState.lives--;
+                    if (newGameState.lives === 0) {
+                        newGameState.status = "LOSES";
+                        return newGameState;
+                    }
+                    replayLevel();
+                }
+                break;
         case "CHANGE_EVENT":
             newGameState.guess = Number(action.value);
             break;

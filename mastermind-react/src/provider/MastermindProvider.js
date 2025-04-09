@@ -12,7 +12,8 @@ const initialGameState = {
     moves: [],
     counter: 60,
     numberOfMoves: 0,
-    maxNumberOfMoves: 10
+    maxNumberOfMoves: 10,
+    status: "PLAYING" // WINS, LOSES, PLAYING
 };
 
 export const GameContext = createContext(initialGameState);

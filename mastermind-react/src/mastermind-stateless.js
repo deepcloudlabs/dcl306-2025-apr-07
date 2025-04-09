@@ -5,12 +5,30 @@ import Badge from "./components/common/badge";
 import ProgressBar from "./components/common/progress-bar";
 import Table from "./components/common/table";
 import Container from "./components/common/container";
-import {useContext} from "react";
+import {useContext, useEffect, useRef} from "react";
 import {GameContext, useGameDispatcher} from "./provider/MastermindProvider";
+import {useNavigate} from "react-router";
 
 export default function MastermindStateless(){
     const {game} = useContext(GameContext);
     const gameDispatcher = useGameDispatcher();
+    const timerId = useRef(null);
+    const navigate = useNavigate();
+    useEffect(() => {
+        timerId.current = setInterval(() => {
+            gameDispatcher({type: "TIMER_TICK"});
+        }, 1_000)
+        return () => {
+            if (timerId) clearInterval(timerId.current);
+        }
+    }, []);
+
+    useEffect(() => {
+        if(game.status === "WINS")
+            navigate("/wins");
+        else if(game.status === "LOSES")
+            navigate("/loses");
+    });
 
     const play = (event) => {
         // event => action
