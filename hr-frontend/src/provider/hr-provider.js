@@ -33,6 +33,12 @@ export function useEmployee(){
     return hr.employee;
 }
 
+export function useDepartments(){
+    const {hr} = useContext(HrContext);
+    hr.departments.sort();
+    return hr.departments;
+}
+
 export default function HrProvider() {
     const [hr,hrDispatcher] = useReducer(HrReducer,initialState);
     return(
